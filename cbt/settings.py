@@ -44,6 +44,11 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 ALLOWED_HOSTS = ['*']
 
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-3429.up.railway.app'
+]
+
 # Application definition
 
 INSTALLED_APPS = [
