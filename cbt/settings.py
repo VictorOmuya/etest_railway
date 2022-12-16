@@ -170,10 +170,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL ='users:profile'
 LOGIN_URL = 'users:login'
 
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_SES_REGION_NAME = 'us-east-1' 
-AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+#EMAIL_BACKEND = 'django_ses.SESBackend'
+#AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+#AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+#AWS_SES_REGION_NAME = 'us-east-1' 
+#AWS_SES_REGION_ENDPOINT = 'email.us-east-1.amazonaws.com'
+#EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 
