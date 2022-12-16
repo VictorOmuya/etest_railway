@@ -2,5 +2,3 @@
 node_modules
 db.sqlite3
 .dockerignore
-package.json
-package-lock.json
