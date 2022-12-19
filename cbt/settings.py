@@ -37,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 
@@ -118,7 +118,6 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-
 
 
 # Password validation

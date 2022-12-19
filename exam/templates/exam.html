@@ -1,9 +1,30 @@
-{% extends 'base.html' %}
 {% load static %}
+<html>
 
-{% block title %} Exam {% endblock %}
+  <head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+  </head>
+   <body>
+    <nav class="bg-white shadow-lg">
+      
+          <div class="flex">
+            <div>
+              <a href="#" class="flex px-4 py-4">
+              <!--<img class="h-8 w-8" src="{% static '' %}" alt=""> -->
+              <span class="text-black-500 font-semibold text-lg">PremiereLead</span>
+          
+              </a>
+              </div>
+              <div style="float:right; display: flex; margin-left: 55%;">
+   
+                
+              </div>
+          </div>
+       
+    </nav>
 
-{% block content %}
+<body>
+
 
 <div>
 
@@ -37,8 +58,9 @@
       </div>
     </div>
 
-  {% endblock %}
 
-  {% block scripts %}
-  <script src="{% static 'jscript.js' %}"></script>
-  {% endblock %}
+  <script src="{% static 'scripts.js' %}"></script>
+
+
+  </body>
+</html>

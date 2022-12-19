@@ -1,3 +1,4 @@
+
 if(localStorage.getItem("count_timer")){
     var count_timer = localStorage.getItem("count_timer");
 } else {
@@ -20,7 +21,10 @@ function countDownTimer(){
          get.click();
 
     }
-   
+    else if(get.clicked()){
+        console.log("submittedd!") 
+        localStorage.clear("count_timer");
+    }
      else {
         count_timer = count_timer -1 ;
         minutes = parseInt(count_timer/60);
@@ -33,8 +37,6 @@ setTimeout("countDownTimer()",1000);
 
 function clickEvent() {
     localStorage.clear("count_timer");
-    window.opener = self;
-    window.close()
     console.log("Click Event triggered")
 }
 
