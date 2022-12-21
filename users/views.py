@@ -36,7 +36,7 @@ def login_attempt(request):
         login(request , user)
         return redirect('users:profile')
 
-    return render(request , 'login.html')
+    return render(request , 'loging.html')
 
 def register(request):
     form = NewUserForm()
@@ -60,7 +60,7 @@ def register(request):
             user_obj.set_password(password)
             #user_obj.save()
             auth_token = str(uuid.uuid4())
-            #print('http://127.0.0.1:8000/verify/'+auth_token)
+            print('http://127.0.0.1:8000/verify/'+auth_token)
             profile_obj = Profile.objects.create(user = user , auth_token = auth_token)
             profile_obj.save()
             #send_mail_after_registration(email , auth_token)
@@ -69,7 +69,7 @@ def register(request):
     context={
         'form':form,
     }
-    return render(request,'register.html',context)
+    return render(request,'reg.html',context)
             
     
 @login_required
@@ -123,7 +123,6 @@ def regsuccess(request):
 
 def token_send(request):
     return render(request , 'token_send.html')
-
 
 
 def verify(request , auth_token):
