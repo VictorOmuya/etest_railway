@@ -166,6 +166,18 @@ a:hover{
     </div>
     <form action="" method="post" class="w-50">
 		<h3>Sign In</h3>
+
+		<h3 class="card-title text-center" style="font-size: 10px;"></h3>
+        {% if messages %}
+
+        {% for message in messages %}
+        <div style="margin-top: 5px; margin-bottom:5px; background-color: aquamarine;">
+            {{ message }}
+        </div>
+        {% endfor %}
+  
+    {% endif %}
+
 		{% csrf_token %}
 		<div class="mb-10">
 			<label>Username</label>

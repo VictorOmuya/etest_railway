@@ -3,13 +3,12 @@
 {% load static %}
 
 {% block content %}
-
 <div id="countdown-box" class="text-center mt-3 h1">
     <span id="time"></span>
 </div>
 
 <div class="justify-center p-5 ">
-    <form action="{% url 'users:exam' user.profile.id %}" method="post">
+    <form action="{% url 'exam:newexam' user.profile.id %}" method="post">
 
         {% csrf_token %}
         <div class="rounded shadow-lg px-10 ml-50 text-base mb-2"> 
@@ -17,34 +16,151 @@
             {% for q in page %}
                 <p>{{q.question}}</p>
                     <div class="py-2">
-                        <input type="radio" name="{{ q.question }}" value="{{ q.optionA }}" id="form-id"> {{ q.optionA }}  </input><br>
-                        <input type="radio" name="{{ q.question }}" value="{{ q.optionB }}" id="form-id"> {{ q.optionB }}  </input><br>
-                        <input type="radio" name="{{ q.question }}" value="{{ q.optionC }}" id="form-id"> {{ q.optionC }}  </input><br>
-                        <input type="radio" name="{{ q.question }}" value="{{ q.optionD }}" id="form-id"> {{ q.optionD }}  </input>
+                        <input type="radio" name="options" value="{{ q.optionA }}" id="optionA" onclick="optionsClicked()"> {{ q.optionA }}  </input><br>
+                        <input type="radio" name="options" value="{{ q.optionB }}" id="optionB" onclick="optionsClicked()" > {{ q.optionB }}  </input><br>
+                        <input type="radio" name="options" value="{{ q.optionC }}" id="optionC" onclick="optionsClicked()" > {{ q.optionC }}  </input><br>
+                        <input type="radio" name="options" value="{{ q.optionD }}" id="optionD" onclick="optionsClicked()" > {{ q.optionD }}  </input><br>
+                        <input type="text" name="answer" value="{{ q.Answer }}" id="optionE" style="display:none;" />
                         
                     </div> <br>
             {% endfor %}
        
         </div>
-        
-        <input type="submit", value="submit", onclick= "clickEvent()" class="bg-green-500 text-white px-5 py-2" id="button">
+        <input type="text" value="" id="scoretext" name="score">
+        <input onclick= "submit()" type="submit" value="submit" class="bg-green-500 text-white px-5 py-2" id="button">
+
     
         </form>
       </div>
    
-
+<!-- 
 {% if page.has_previous %}
-    <a href="{% url 'users:newexam' user.profile.id %}?page={{ page.previous_page_number }}" id="prev"
+    <a href="{% url 'exam:newexam' user.profile.id %}?page={{ page.previous_page_number }}" id="prev"
     onclick="myFunction()">Previous</a>
 {% endif %}
+-->
 
 {% if page.has_next %}
-    <a href="{% url 'users:newexam' user.profile.id %}?page={{ page.next_page_number }}" id="next"
-    onclick="myFunction()">Next</a>
+    <a href="{% url 'exam:newexam' user.profile.id %}?page={{ page.next_page_number }}" 
+    onclick="myFunction()"  id="next">Next</a>
 {% endif %}
 
 {% endblock %}
 
 {% block scripts %}
 <script src="{% static 'jscript.js' %}"></script>
+
+<script>
+
+    var picked = ""
+    var score = 0
+    
+    if( localStorage.getItem("score") == "NaN"){
+        localStorage.setItem("score", 0)
+    }
+
+    else{
+        localStorage.getItem("score")
+    }
+
+function optionsClicked(){
+    document.getElementById("scoretext").value = localStorage.getItem("score")
+}
+
+function myFunction() {
+
+    if (document.getElementById('optionA').checked) {
+        picked = document.getElementById('optionA').value; 
+        }
+    else if (document.getElementById('optionB').checked) {
+        picked = document.getElementById('optionB').value;
+        }
+
+    else if (document.getElementById('optionC').checked) {
+    picked = document.getElementById('optionC').value;
+    }
+    else if (document.getElementById('optionD').checked) {
+    picked = document.getElementById('optionD').value;
+    }
+
+    console.log(picked)
+
+    let answer = document.getElementById('optionE').value;
+    if (answer == picked){
+        score = parseInt(localStorage.getItem("score")) + 5
+        localStorage.setItem("score", score)
+        document.getElementById("score").innerHTML = score
+        console.log(localStorage.getItem("score"))
+    }
+
+    else{
+        score = parseInt(localStorage.getItem("score")) + 0
+        localStorage.setItem("score", score)
+        document.getElementById("score").innerHTML = score
+        console.log(localStorage.getItem("score"))
+    }
+    document.getElementById("scoretext").value = localStorage.getItem("score")
+}
+
+
+function submit(){
+
+    if (document.getElementById('optionA').checked) {
+        picked = document.getElementById('optionA').value; 
+        }
+    else if (document.getElementById('optionB').checked) {
+        picked = document.getElementById('optionB').value;
+        }
+
+    else if (document.getElementById('optionC').checked) {
+    picked = document.getElementById('optionC').value;
+    }
+    else if (document.getElementById('optionD').checked) {
+    picked = document.getElementById('optionD').value;
+    }
+
+    console.log(picked)
+    let answer = document.getElementById('optionE').value;
+
+    if (answer == picked){
+        score = parseInt(localStorage.getItem("score")) + 5
+        localStorage.setItem("score", score)
+        document.getElementById("score").innerHTML = score
+        console.log(localStorage.getItem("score"))
+    }
+
+    else{
+        score = parseInt(localStorage.getItem("score")) + 0
+        localStorage.setItem("score", score)
+        document.getElementById("score").innerHTML = score
+        console.log(localStorage.getItem("score"))
+    }
+
+    document.getElementById("scoretext").value = localStorage.getItem("score")
+
+}
+
+
+// Disable right-click
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+function ctrlShiftKey(e, keyCode) {
+  return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+}
+
+document.onkeydown = (e) => {
+  // Disable F12, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + U
+  if (
+    event.keyCode === 123 ||
+    ctrlShiftKey(e, 'I') ||
+    ctrlShiftKey(e, 'J') ||
+    ctrlShiftKey(e, 'C') ||
+    (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+  )
+    return false;
+};
+
+
+</script>
+
 {% endblock %}

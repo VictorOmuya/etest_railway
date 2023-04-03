@@ -46,12 +46,3 @@ window.onpopstate = function () {
 
 var myButton1 = document.getElementById("next")
 var myButton2 = document.getElementById("prev")
-
-myButton1.onclick = function() {myFunction()};
-function myFunction() {
-    console.log("clicked")
-}
-myButton2.onclick = function() {myFunction()};
-function myFunction() {
-    console.log("clicked")
-   }

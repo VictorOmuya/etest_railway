@@ -37,7 +37,7 @@
    
 </div>
 <div style="padding-left:22%;">
-    <a class="text-white bg-blue-800 px-5 py-2" href="{% url 'exam:exam' user.profile.id %}" 
+    <a class="text-white bg-blue-800 px-5 py-2" href="{% url 'exam:newexam' user.profile.id %}" 
     onclick="window.open(this.href,'popUpWindow','scrollbars=yes,menubar=no'); return false;">Start Exam</a>
 </div>
 {% endblock %}

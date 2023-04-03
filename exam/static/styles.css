@@ -17,6 +17,8 @@ Use a better box model (opinionated).
   box-sizing: border-box;
 }
 
+
+
 /**
 Use a more readable tab size (opinionated).
 */
@@ -94,6 +96,10 @@ Text-level semantics
 /**
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
+
+#optionE{
+  display:none;
+}
 
 abbr[title] {
   -webkit-text-decoration: underline dotted;

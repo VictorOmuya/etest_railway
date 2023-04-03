@@ -74,15 +74,19 @@ def newexam(request, id):
     }
     
     if request.method == 'POST':
-        for q in obj:
-            user_answer = request.POST.get(q.question)
-            print(user_answer)
-            if q.Answer == user_answer:
-                score += 5
-                print(score)
-            else:
-                score += 0
-    
+        print('submitted!')
+        score = int(request.POST.get('score'))
+        
+        user_answer = request.POST.get("options")
+        answer = request.POST.get("answer")
+        print(user_answer)
+        print(answer)
+        if  answer == user_answer:
+            score += 5
+        else:
+            score += 0
+        print(score)
+        
     return render(request, 'newexam.html', context)
 
 def success(request):
